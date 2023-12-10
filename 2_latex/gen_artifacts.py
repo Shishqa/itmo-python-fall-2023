@@ -1,3 +1,5 @@
+import os
+
 from latex.document import document
 from latex.tabular import tabular
 from latex.common import center
@@ -29,5 +31,6 @@ def render_and_compile(doc, name):
 
 
 if __name__ == "__main__":
+    os.makedirs("artifacts", exist_ok=True)
     render_and_compile(my_document_with_table(), "1")
     render_and_compile(my_document_with_puppy(), "2")

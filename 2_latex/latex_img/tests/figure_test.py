@@ -21,7 +21,7 @@ def test_document_with_figure(test_document):
     assert latex_code == f"""\\documentclass{{article}}
 \\begin{{document}}
 \\begin{{figure}}
-\t\\includegraphics{{{os.getcwd()}/puppy.jpg}}
+\t\\includegraphics[width=\\textwidth]{{{os.getcwd()}/puppy.jpg}}
 \t\\centering
 \t\\caption{{My lovely puppy}}
 \\end{{figure}}

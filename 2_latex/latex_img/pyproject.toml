@@ -5,14 +5,13 @@ authors = [
   { name="Mikhail Shishatskiy", email="shishqa@duck.com" },
 ]
 description = "A small latex generation library"
-readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
 dependencies = [
-  "latex @ file:///home/shishqa/dev/mhs/python/2_latex/latex/",
+  "latex @ https://github.com/Shishqa/itmo-python-fall-2023/releases/download/v0.0.1/latex-0.0.1-py3-none-any.whl",
 ]
 
 [project.optional-dependencies]
