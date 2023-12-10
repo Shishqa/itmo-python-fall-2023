@@ -1,0 +1,1 @@
+latex @ https://github.com/Shishqa/itmo-python-fall-2023/releases/download/v0.0.1/latex-0.0.1-py3-none-any.whl#sha256=27ba7a9f0f7aa63defe7f98571e7bf3c0c492a431d47c4fbf2f71a36c8458b53
