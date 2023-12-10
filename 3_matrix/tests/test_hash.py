@@ -10,7 +10,7 @@ def test_matmul():
         [9, 8],
         [6, 5],
     ])
-    res = Matrix([
+    res = HashedMatrix([
         [21, 18],
     ])
 

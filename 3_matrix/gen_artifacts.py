@@ -7,7 +7,8 @@ from matrix.np_matrix import NpMatrix
 
 def dump(mx, path):
     with open(path, "w") as fp:
-        fp.write(str(mx))
+        mx.dump(fp)
+
 
 def gen_1_and_2(folder, matrix_class):
     np.random.seed(0)

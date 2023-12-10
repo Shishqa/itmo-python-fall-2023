@@ -1,7 +1,12 @@
-from matrix.matrix import Matrix
+from matrix.np_matrix import NpMatrix
 
 
-class PolynomialHashMixin:
+class PolynomialHashMixin(object):
+    """
+    Полиномиально-хешируемая матрица
+    https://codeforces.com/blog/entry/102652
+    """
+
     _U = 311
     _V = 1117
     _MOD = 1e9 + 7
@@ -18,7 +23,7 @@ class PolynomialHashMixin:
         return res
 
 
-class HashedMatrix(Matrix, PolynomialHashMixin):
+class HashedMatrix(NpMatrix, PolynomialHashMixin):
 
     CACHE_KEY = "__cache"
     PREV_HASH_KEY = "__prev_hash"
@@ -27,7 +32,7 @@ class HashedMatrix(Matrix, PolynomialHashMixin):
         super().__init__(*args, **kwargs)
 
     def __matmul__(self, other):
-        self_hash = hash(self)
+        self_hash = super(PolynomialHashMixin, self).__hash__()
         if not hasattr(self, self.CACHE_KEY):
             setattr(self, self.CACHE_KEY, {})
             setattr(self, self.PREV_HASH_KEY, self_hash)
@@ -37,11 +42,11 @@ class HashedMatrix(Matrix, PolynomialHashMixin):
 
         cache = getattr(self, self.CACHE_KEY)
 
-        other_hash = hash(other)
+        other_hash = super(PolynomialHashMixin, other).__hash__()
         if other_hash in cache:
             return cache[other_hash]
 
-        res = super().__matmul__(other)
+        res = super(NpMatrix, self).__matmul__(other)
         cache[other_hash] = res
         return res
 

@@ -19,6 +19,9 @@ class Matrix:
         res += "])"
         return res
 
+    def dump(self, fp):
+        fp.write(str(self))
+
     def _validate_class(self, other):
         if not isinstance(other, self.__class__):
             raise ValueError(f"Expected other to be {self.__class__.__name__}")
