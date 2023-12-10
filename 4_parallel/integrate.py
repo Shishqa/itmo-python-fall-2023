@@ -1,3 +1,4 @@
+import functools
 import math
 import sys
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
@@ -27,9 +28,9 @@ def split_by_count(lst, n_chunks):
         start = end
 
 
-def integrate_part(f, x_array, step):
+def integrate_part(f, step, x_array):
     acc = 0
-    log.info(f"started calculation of integral of {f.__name__} from {x_array[0]} to {x_array[-1]} with step {step}")
+    log.info(f"({len(x_array)}) started calculation of integral of {f.__name__} from {x_array[0]} to {x_array[-1]} with step {step}")
     for x in x_array:
         acc += f(x) * step
     log.info(f"integral of {f.__name__} on [{x_array[0]}, {x_array[-1]}] = {acc}")
@@ -37,13 +38,14 @@ def integrate_part(f, x_array, step):
 
 
 @timing
-def integrate(f, a, b, *, pool_class = ThreadPoolExecutor, n_jobs=1, n_iter=100000000):
+def integrate(f, a, b, *, pool_class = ThreadPoolExecutor, n_jobs=1, n_iter=10000000):
     acc = 0
     step = (b - a) / n_iter
     x_array = [a + i * step for i in range(n_iter)]
 
+    worker_func = functools.partial(integrate_part, f, step)
     with pool_class(max_workers=n_jobs) as pool:
-        for res in pool.map(integrate_part, [f] * n_jobs, split_by_count(x_array, n_jobs), [step] * n_jobs):
+        for res in pool.map(worker_func, split_by_count(x_array, n_jobs)):
             acc += res
 
     return acc
@@ -62,7 +64,6 @@ def run_with_executor(pool_class):
         fp.write("n_jobs,time\n")
         for n_jobs, timing in results:
             fp.write(f"{n_jobs},{timing}\n")
-
 
 
 if __name__ == "__main__":
