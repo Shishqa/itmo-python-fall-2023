@@ -1,7 +1,5 @@
 # (yet another) tail.py
 
-Acts like an ordinary [tail](https://man7.org/linux/man-pages/man1/tail.1.html)
-
 ## Usage
 
 ```bash

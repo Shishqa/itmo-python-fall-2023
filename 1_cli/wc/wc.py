@@ -27,7 +27,9 @@ def main():
     for path, stats in results:
         stats = list(map(lambda item: str(item).rjust(pad), stats))
         stats = " ".join(stats)
-        print(f"{stats} {path}")
+        if path:
+            stats += f" {path}"
+        print(stats)
 
 
 def print_help(prog_name):

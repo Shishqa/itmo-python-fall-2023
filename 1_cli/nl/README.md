@@ -1,7 +1,5 @@
 # (yet another) nl.py
 
-Acts like an ordinary [nl](https://man7.org/linux/man-pages/man1/nl.1.html)
-
 ## Usage
 
 ```bash
