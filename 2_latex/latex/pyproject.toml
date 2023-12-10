@@ -1,0 +1,28 @@
+[project]
+name = "latex"
+version = "0.0.1"
+authors = [
+  { name="Mikhail Shishatskiy", email="shishqa@duck.com" },
+]
+description = "A small latex generation library"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".",
+  "src",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

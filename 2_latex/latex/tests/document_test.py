@@ -26,11 +26,16 @@ def test_document_full(test_document):
     assert latex_code == """\\documentclass{article}
 \\begin{document}
 \\begin{center}
-\\begin{tabular}{c c}
+\\begin{tabular}{|c|c|}
+\t\\hline
 \tid & name \\\\
+\t\\hline
 \t1 & Nick \\\\
+\t\\hline
 \t2 & Bobby \\\\
+\t\\hline
 \t3 & Tom \\\\
+\t\\hline
 \\end{tabular}
 \\end{center}
 \\end{document}"""
